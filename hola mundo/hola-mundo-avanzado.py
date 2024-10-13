@@ -1,10 +1,14 @@
-
 import sqlite3
+import os
 
 class GestorSaludos:
     def __init__(self, db_name="saludos.db"):
+        # Obtener el directorio actual del archivo Python
+        ruta_actual = os.path.dirname(os.path.abspath(__file__))
+        # Crear la ruta completa para la base de datos en la misma carpeta que el script
+        db_path = os.path.join(ruta_actual, db_name)
         # Conectar a la base de datos o crearla si no existe
-        self.conn = sqlite3.connect(db_name)
+        self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
         self.crear_tabla()
 
